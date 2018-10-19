@@ -1,0 +1,6 @@
+Exemplo de utilização do encoder
+
+Neste exemplo o comum do encoder é colocado em gnd e os outros pinos no PA9 e PA8. 
+
+Fontes:
+https://petoknm.wordpress.com/2015/01/05/rotary-encoder-and-stm32/
