@@ -1,0 +1,13 @@
+  /* USER CODE BEGIN 2 */
+ HAL_TIM_Base_Start_IT(&htim1);
+
+
+/* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == htim1.Instance)
+    {
+        /* Toggle LED */
+    	HAL_GPIO_TogglePin(led_GPIO_Port,led_Pin);
+    }
+}
