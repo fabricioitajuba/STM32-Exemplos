@@ -1,0 +1,6 @@
+Exemplo de utilização do encoder
+
+Neste exemplo o comum do encoder é colocado em gnd e os outros pinos no PA9 e PA8. 
+
+Fontes:
+http://elastic-notes.blogspot.com/p/cubemx-stm32-encoder-interface.html
