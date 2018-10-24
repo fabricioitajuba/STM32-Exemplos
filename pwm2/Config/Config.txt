@@ -1,0 +1,37 @@
+Fonte:
+https://electronics.stackexchange.com/questions/179546/getting-pwm-to-work-on-stm32f4-using-sts-hal-libraries
+
+PWM de 1kHz
+
+/* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim1;
+
+  /* USER CODE BEGIN 1 */
+  uint16_t dutyCycle = 0;
+
+  /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+  HAL_TIMEx_PWMN_Start(&htim1,TIM_CHANNEL_1);
+
+  while (1)
+  {
+	  while (dutyCycle < 1000)
+	  {
+		  dutyCycle ++;
+		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
+//		  TIM3->CCR2 = dutyCycle;
+		  HAL_Delay(1);
+	  }
+	  while (dutyCycle)
+	  {
+		  dutyCycle --;
+		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
+//		  TIM3->CCR2 = dutyCycle;
+		  HAL_Delay(1);
+	  }
+	  HAL_Delay(200);
+  /* USER CODE END WHILE */
+
+  /* USER CODE BEGIN 3 */
+
+  }
