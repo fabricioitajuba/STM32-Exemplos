@@ -1,0 +1,6 @@
+Medidor de temperatura com o DS18B20
+
+Ligar o vdd do sensor no +3.3v
+Ligar um resistor de 4k7 entre o pino DQ do sensor e o +3.3v
+Ligar o pino DQ do sensor no pino PB12 do stm32
+Ligar o gnd do sensor no gnd.
