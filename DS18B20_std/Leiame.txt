@@ -1,0 +1,1 @@
+Mesmo exemplo DS18B20_std1 sem a biblioteca "utils.h"
