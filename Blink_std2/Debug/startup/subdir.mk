@@ -15,7 +15,7 @@ startup/%.o: ../startup/%.s
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Assembler'
 	@echo $(PWD)
-	arm-none-eabi-as -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -I"D:/Microcontroladores ARM/ST/Projetos/System Workbench/Blink_std2/StdPeriph_Driver/inc" -I"D:/Microcontroladores ARM/ST/Projetos/System Workbench/Blink_std2/inc" -I"D:/Microcontroladores ARM/ST/Projetos/System Workbench/Blink_std2/CMSIS/device" -I"D:/Microcontroladores ARM/ST/Projetos/System Workbench/Blink_std2/CMSIS/core" -g -o "$@" "$<"
+	arm-none-eabi-as -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DS18B20_std2/StdPeriph_Driver/inc" -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DS18B20_std2/inc" -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DS18B20_std2/CMSIS/device" -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DS18B20_std2/CMSIS/core" -g -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

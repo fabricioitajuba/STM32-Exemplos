@@ -29,13 +29,13 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: Blink_std2.elf
+all: DS18B20_std2.elf
 
 # Tool invocations
-Blink_std2.elf: $(OBJS) $(USER_OBJS) D:\Microcontroladores\ ARM\ST\Projetos\System\ Workbench\Blink_std2\LinkerScript.ld
+DS18B20_std2.elf: $(OBJS) $(USER_OBJS) D:\Informações\Microcontroladores\ARM\Projetos\System\ workbench\DS18B20_std2/LinkerScript.ld
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -T"D:\Microcontroladores ARM\ST\Projetos\System Workbench\Blink_std2\LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "Blink_std2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -T"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DS18B20_std2/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "DS18B20_std2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
@@ -47,8 +47,8 @@ clean:
 
 post-build:
 	-@echo 'Generating binary and Printing size information:'
-	arm-none-eabi-objcopy -O binary "Blink_std2.elf" "Blink_std2.bin"
-	arm-none-eabi-size "Blink_std2.elf"
+	arm-none-eabi-objcopy -O binary "DS18B20_std2.elf" "DS18B20_std2.bin"
+	arm-none-eabi-size "DS18B20_std2.elf"
 	-@echo ' '
 
 .PHONY: all clean dependents

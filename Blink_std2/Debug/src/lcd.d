@@ -1,6 +1,4 @@
-StdPeriph_Driver/src/stm32f10x_fsmc.o: \
- ../StdPeriph_Driver/src/stm32f10x_fsmc.c \
- D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_fsmc.h \
+src/lcd.o: ../src/lcd.c \
  D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/CMSIS/device/stm32f10x.h \
  D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/CMSIS/core/core_cm3.h \
  D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/CMSIS/device/system_stm32f10x.h \
@@ -28,9 +26,9 @@ StdPeriph_Driver/src/stm32f10x_fsmc.o: \
  D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_usart.h \
  D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_wwdg.h \
  D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/misc.h \
- D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_rcc.h
-
-D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_fsmc.h:
+ D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_gpio.h \
+ D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_rcc.h \
+ D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/inc/lcd.h
 
 D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/CMSIS/device/stm32f10x.h:
 
@@ -86,4 +84,8 @@ D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/St
 
 D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/misc.h:
 
+D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_gpio.h:
+
 D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/StdPeriph_Driver/inc/stm32f10x_rcc.h:
+
+D:/Informações/Microcontroladores/ARM/Projetos/System\ workbench/DS18B20_std2/inc/lcd.h:
