@@ -32,10 +32,10 @@ endif
 all: DFPlayer_Mini_std.elf
 
 # Tool invocations
-DFPlayer_Mini_std.elf: $(OBJS) $(USER_OBJS) D:\Informações\Microcontroladores\ARM\Projetos\System\ workbench\DFPlayer_Mini_std/LinkerScript.ld
+DFPlayer_Mini_std.elf: $(OBJS) $(USER_OBJS) D:\Microcontroladores\ARM\Projetos\System\ Workbench\DFPlayer_Mini_std\LinkerScript.ld
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -T"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DFPlayer_Mini_std/LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "DFPlayer_Mini_std.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
+	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -T"D:\Microcontroladores\ARM\Projetos\System Workbench\DFPlayer_Mini_std\LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "DFPlayer_Mini_std.elf" @"objects.list" $(USER_OBJS) $(LIBS) -lm
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

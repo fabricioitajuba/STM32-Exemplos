@@ -15,7 +15,7 @@ startup/%.o: ../startup/%.s
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Assembler'
 	@echo $(PWD)
-	arm-none-eabi-as -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DFPlayer_Mini_std/StdPeriph_Driver/inc" -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DFPlayer_Mini_std/inc" -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DFPlayer_Mini_std/CMSIS/device" -I"D:/Informações/Microcontroladores/ARM/Projetos/System workbench/DFPlayer_Mini_std/CMSIS/core" -g -o "$@" "$<"
+	arm-none-eabi-as -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -I"D:/Microcontroladores/ARM/Projetos/System Workbench/DFPlayer_Mini_std/StdPeriph_Driver/inc" -I"D:/Microcontroladores/ARM/Projetos/System Workbench/DFPlayer_Mini_std/inc" -I"D:/Microcontroladores/ARM/Projetos/System Workbench/DFPlayer_Mini_std/CMSIS/device" -I"D:/Microcontroladores/ARM/Projetos/System Workbench/DFPlayer_Mini_std/CMSIS/core" -g -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
