@@ -20,11 +20,16 @@ int main(void)
 	Delay_ini();
 
 	//inicializa o DFPlayer
-	send_comand_DFPlayer(9, 0, 4);
+	ini_DFPlayer(INI_FLASH);
+	specify_playback_source(FLASH);
+	specify_eq(ROCK);
+	Delay_ms(3000);
 
-	Delay_ms(100);
 	volume(20);
-	play();
+
+	normal_working(); //Executa uma por uma
+	//previous();
+	//previous();
 
 	while(1)
 	{
