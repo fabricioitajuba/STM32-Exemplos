@@ -1,21 +1,28 @@
 /* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
+/*******************************************************************************
+Blink usando interrupção pelo timer
+Autor: Fabrício Ribeiro
+Data: 03/10/2019
+
+Fonte:
+http://www.emcu.eu/stm32-basic-timer/
+
+FORMULA:
+
+In general the formula for PERIOD calculation is:
+
+T = (1/APB_TIM_CLK in MHz) * (PRESCALER_Value + 1) * (PERIOD_Value + 1)
+
+suppose:
+APB_TIM_CLK = 72MHz
+PRESCALER_Value = 9999
+PERIOD_Value = 7199
+
+the formula is:
+T= (1/72*10^6) * (9999+1) * (7199+1) = 1s
+
+*******************************************************************************/
+
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -164,7 +171,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 9999;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 6999;
+  htim1.Init.Period = 7199;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
