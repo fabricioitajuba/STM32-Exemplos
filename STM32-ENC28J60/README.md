@@ -13,20 +13,20 @@ PA5 - SPI1_SCK
 PA6 - SPI1_MISO
 PA7 - SPI1_MOSI
 
-- SPI1 Mode and Configuration
+SPI1 Mode and Configuration
 Mode: Full-Duplex Master
 Hardware NSS Signal: Disable
 
-- Parameter Settings
+Parameter Settings
 Frame Format: Motorola
 Data Size: 8 Bits
 First Bit: MSB First
 
-- Clock Parameters
+Clock Parameters
 Prescaler: 64
 Clock Polarity (CPOL): Low
 Clock Phase (CPHA): 1 Edge
 
-- Advanced Parameters
+Advanced Parameters
 CRC Calcuation: Disabled
 NSS Signal Type: Software
