@@ -1,0 +1,6 @@
+dnslkup.c:28:9:dnslkup_haveanswer	4	static
+dnslkup.c:33:9:dnslkup_get_error_info	4	static
+dnslkup.c:38:10:dnslkup_getip	4	static
+dnslkup.c:48:6:dnslkup_request	24	static
+dnslkup.c:108:9:udp_client_check_for_dns_answer	32	static
+dnslkup.c:189:6:dnslkup_set_dnsip	24	static
