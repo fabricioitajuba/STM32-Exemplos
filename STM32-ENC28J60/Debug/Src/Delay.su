@@ -1,0 +1,5 @@
+Delay.c:13:6:TimingDelay_Decrement	4	static
+Delay.c:21:6:Delay_Ms	24	static
+Delay.c:30:6:Delay_us	16	static
+Delay.c:39:6:IncreaseMillis	4	static
+Delay.c:44:10:Millis	4	static
