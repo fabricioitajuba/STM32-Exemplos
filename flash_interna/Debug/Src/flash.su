@@ -1,0 +1,2 @@
+flash.c:9:6:save_to_flash	80	dynamic
+flash.c:53:6:read_flash	24	static
