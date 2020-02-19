@@ -37,6 +37,18 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+//Verificando o id do dispositivo para formar o endereço mac: id-> id[0], id[1], id[2]
+//#define ID1 (*(unsigned long *)0x1FFFF7E8)
+//#define ID2 (*(unsigned long *)0x1FFFF7EC)
+//#define ID3 (*(unsigned long *)0x1FFFF7F0)
+//ou
+//unsigned long *id = (unsigned long *)0x1FFFF7E8;
+//ou
+#define mac1 (*(uint8_t *)0x1FFFF7EC)
+#define mac2 (*(uint8_t *)0x1FFFF7ED)
+#define mac3 (*(uint8_t *)0x1FFFF7EE)
+
 #define MYWWWPORT 80
 #define BUFFER_SIZE 550
 /* USER CODE END PD */
@@ -51,7 +63,8 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
-static uint8_t mymac[6] = { 0x54, 0x55, 0x58, 0x10, 0x00, 0x25 };
+//static uint8_t mymac[6] = { 0x54, 0x55, 0x58, 0x10, 0x00, 0x25 };
+static uint8_t mymac[6] = { 0xFA, 0x07, 0x03, 0x00, 0x00, 0x00 };
 
 /*static uint8_t myip[4] = {
  192,168,0,15};*/
@@ -130,6 +143,9 @@ int main(void)
   ES_enc28j60SpiInit(&hspi1);
 
   // initialize enc28j60
+  mymac[3] = mac1;
+  mymac[4] = mac2;
+  mymac[5] = mac3;
   ES_enc28j60Init(mymac);
 
   // init the ethernet/ip layer:
@@ -350,18 +366,23 @@ uint16_t print_webpage(uint8_t *buf)
 	plen = http200ok();
 	plen = ES_fill_tcp_data(buf, plen, "<html><head><title>STM32F1 ENC28J60 Ethernet Demo</title></head><body>");
 	plen = ES_fill_tcp_data(buf, plen, "<center><h2>Welcome to STM32F1 ENC28J60 Ethernet Demo</h2>");
-	//plen = ES_fill_tcp_data(buf, plen, "<br> Control digital outputs (not implemented yet)");
-	//plen = ES_fill_tcp_data(buf, plen, "<br> Read digital analog inputs (not implemented yet)");
 	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test '>Segunda pagina</a> <br>");
 
 	int a=45;
-	char writeValue[20];
+	char writeValue[30];
 
-	sprintf(writeValue,"O valor da variavel a=%d",a);
+	sprintf(writeValue,"O valor da variavel a= %d",a);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
 	plen = ES_fill_tcp_data(buf, plen, "<br> ");
 
-	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test'><button>Segunda pagina</button></a>");
+	//uint32_t HAL_GetREVID (void )
+	//uint32_t HAL_GetDEVID (void )
+	//sprintf(writeValue,"O valor do ID do chip =%d",ID);
+
+	sprintf(writeValue,"O valor do ID do chip = %X %X %X",mac1, mac2, mac3);
+	plen = ES_fill_tcp_data(buf, plen, writeValue);
+	plen = ES_fill_tcp_data(buf, plen, "<br> ");
+
 	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'><button>Ligar led</button></a>");
 	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'><button>Desligar led</button></a>");
 
