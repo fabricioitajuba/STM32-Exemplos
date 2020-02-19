@@ -344,40 +344,26 @@ uint16_t http200ok(void)
 // prepare the webpage by writing the data to the tcp send buffer
 uint16_t print_webpage(uint8_t *buf)
 {
+	//Obs: Tomar cuidado para não ultrapassar o máximo do buffer que é 550
 	uint16_t plen;
 
 	plen = http200ok();
 	plen = ES_fill_tcp_data(buf, plen, "<html><head><title>STM32F1 ENC28J60 Ethernet Demo</title></head><body>");
-	plen = ES_fill_tcp_data(buf, plen, "<center><h1>Welcome to STM32F1 ENC28J60 Ethernet Demo</h1>");
-	plen = ES_fill_tcp_data(buf, plen, "<br> Control digital outputs (not implemented yet)");
-	plen = ES_fill_tcp_data(buf, plen, "<br> Read digital analog inputs (not implemented yet)");
-	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test'>Segunda pagina</a>");
-
-	char writeValue[20]="<br> Chupeteco";
-	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	plen = ES_fill_tcp_data(buf, plen, "<br> ");
+	plen = ES_fill_tcp_data(buf, plen, "<center><h2>Welcome to STM32F1 ENC28J60 Ethernet Demo</h2>");
+	//plen = ES_fill_tcp_data(buf, plen, "<br> Control digital outputs (not implemented yet)");
+	//plen = ES_fill_tcp_data(buf, plen, "<br> Read digital analog inputs (not implemented yet)");
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test '>Segunda pagina</a> <br>");
 
 	int a=45;
-	sprintf(writeValue,"%d",a);
-	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	plen = ES_fill_tcp_data(buf, plen, "<br> ");
+	char writeValue[20];
 
 	sprintf(writeValue,"O valor da variavel a=%d",a);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
 	plen = ES_fill_tcp_data(buf, plen, "<br> ");
 
 	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test'><button>Segunda pagina</button></a>");
-	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'><button>Ligar led</button></a>");
-	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'><button>Desligar led</button></a>");
-
-	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'>Ligar led</a>");
-	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'>Desligar led</a>");
-
-	//plen = ES_fill_tcp_data(buf, plen, "<br> <form action='/led_on' method='get'> <input type='submit' value='Liga LED'/></form>");
-	//plen = ES_fill_tcp_data(buf, plen, "<br> <form action='/led_off' method='get'> <input type='submit' value='Desliga LED'/></form>");
-
-	//sprintf(writeValue,"<br>%d",myip);
-	//plen = ES_fill_tcp_data(buf, plen, writeValue);
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'><button>Ligar led</button></a>");
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'><button>Desligar led</button></a>");
 
 	plen = ES_fill_tcp_data(buf, plen, "<br></font></h2>");
 	plen = ES_fill_tcp_data(buf, plen, "</center><hr>");
