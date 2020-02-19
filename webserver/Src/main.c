@@ -172,6 +172,7 @@ int main(void)
 		{
 			// no http request
 			continue;
+			goto SENDTCP;
 		}
 
 		// tcp port 80 begin
@@ -187,17 +188,24 @@ int main(void)
 		if (strncmp("/ ", (char *) &(buf[dat_p + 4]), 2) == 0)
 		{
 			dat_p = print_webpage(buf);
-			goto SENDTCP;
 		}
 		else if (strncmp("/test ", (char *) &(buf[dat_p + 4]), 2) == 0)
 		{
 			dat_p = print_webpage2(buf);
-			goto SENDTCP;
+		}
+		else if (strncmp("/led_on ", (char *) &(buf[dat_p + 4]), 7) == 0)
+		{
+			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+			dat_p = print_webpage(buf);
+		}
+		else if (strncmp("/led_off ", (char *) &(buf[dat_p + 4]), 8) == 0)
+		{
+			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+			dat_p = print_webpage(buf);
 		}
 		else
 		{
 			dat_p = ES_fill_tcp_data(buf, 0, "HTTP/1.0 401 Unauthorized\r\nContent-Type: text/html\r\n\r\n<h1>401 Unauthorized</h1>");
-			goto SENDTCP;
 		}
 		SENDTCP: ES_www_server_reply(buf, dat_p); // send web page data
 		// tcp port 80 end
@@ -293,12 +301,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : LED_Pin */
   GPIO_InitStruct.Pin = LED_Pin;
@@ -313,6 +325,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(SPI1_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : LED1_Pin */
+  GPIO_InitStruct.Pin = LED1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LED1_GPIO_Port, &GPIO_InitStruct);
 
 }
 
@@ -346,6 +365,16 @@ uint16_t print_webpage(uint8_t *buf)
 	sprintf(writeValue,"O valor da variavel a=%d",a);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
 	plen = ES_fill_tcp_data(buf, plen, "<br> ");
+
+	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test'><button>Segunda pagina</button></a>");
+	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'><button>Ligar led</button></a>");
+	//plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'><button>Desligar led</button></a>");
+
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'>Ligar led</a>");
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'>Desligar led</a>");
+
+	//plen = ES_fill_tcp_data(buf, plen, "<br> <form action='/led_on' method='get'> <input type='submit' value='Liga LED'/></form>");
+	//plen = ES_fill_tcp_data(buf, plen, "<br> <form action='/led_off' method='get'> <input type='submit' value='Desliga LED'/></form>");
 
 	//sprintf(writeValue,"<br>%d",myip);
 	//plen = ES_fill_tcp_data(buf, plen, writeValue);
