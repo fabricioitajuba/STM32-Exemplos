@@ -1399,6 +1399,7 @@ Discarded input sections
  .group         0x0000000000000000        0xc Src/main.o
  .group         0x0000000000000000        0xc Src/main.o
  .group         0x0000000000000000        0xc Src/main.o
+ .group         0x0000000000000000        0xc Src/main.o
  .text          0x0000000000000000        0x0 Src/main.o
  .data          0x0000000000000000        0x0 Src/main.o
  .bss           0x0000000000000000        0x0 Src/main.o
@@ -1448,6 +1449,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Src/main.o
  .debug_macro   0x0000000000000000       0x35 Src/main.o
  .debug_macro   0x0000000000000000       0x20 Src/main.o
+ .debug_macro   0x0000000000000000       0x10 Src/main.o
  .group         0x0000000000000000        0xc Src/stm32f1xx_hal_msp.o
  .group         0x0000000000000000        0xc Src/stm32f1xx_hal_msp.o
  .group         0x0000000000000000        0xc Src/stm32f1xx_hal_msp.o
@@ -2459,33 +2461,33 @@ LOAD /opt/st/stm32cubeide_1.0.2/plugins/com.st.stm32cube.ide.mcu.externaltools.g
                 0x00000000000005dd       0x1d /opt/st/stm32cubeide_1.0.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.linux64_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7-m/crtn.o
 OUTPUT(flash_interna.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x521c
+.debug_info     0x0000000000000000     0x51fa
  .debug_info    0x0000000000000000      0x6fe Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_info    0x00000000000006fe      0xb46 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .debug_info    0x0000000000001244      0x599 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o
  .debug_info    0x00000000000017dd      0x81c Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o
  .debug_info    0x0000000000001ff9      0x804 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_info    0x00000000000027fd      0xb01 Src/flash.o
- .debug_info    0x00000000000032fe      0xce8 Src/main.o
- .debug_info    0x0000000000003fe6      0x2cb Src/stm32f1xx_hal_msp.o
- .debug_info    0x00000000000042b1      0x1fa Src/stm32f1xx_it.o
- .debug_info    0x00000000000044ab      0x91c Src/sysmem.o
- .debug_info    0x0000000000004dc7      0x433 Src/system_stm32f1xx.o
- .debug_info    0x00000000000051fa       0x22 Startup/startup_stm32f103c8tx.o
+ .debug_info    0x00000000000032fe      0xcc6 Src/main.o
+ .debug_info    0x0000000000003fc4      0x2cb Src/stm32f1xx_hal_msp.o
+ .debug_info    0x000000000000428f      0x1fa Src/stm32f1xx_it.o
+ .debug_info    0x0000000000004489      0x91c Src/sysmem.o
+ .debug_info    0x0000000000004da5      0x433 Src/system_stm32f1xx.o
+ .debug_info    0x00000000000051d8       0x22 Startup/startup_stm32f103c8tx.o
 
-.debug_abbrev   0x0000000000000000     0x1401
+.debug_abbrev   0x0000000000000000     0x13ee
  .debug_abbrev  0x0000000000000000      0x1d8 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_abbrev  0x00000000000001d8      0x2d5 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .debug_abbrev  0x00000000000004ad      0x210 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o
  .debug_abbrev  0x00000000000006bd      0x21b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o
  .debug_abbrev  0x00000000000008d8      0x243 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_abbrev  0x0000000000000b1b      0x1d8 Src/flash.o
- .debug_abbrev  0x0000000000000cf3      0x23e Src/main.o
- .debug_abbrev  0x0000000000000f31      0x109 Src/stm32f1xx_hal_msp.o
- .debug_abbrev  0x000000000000103a       0xc6 Src/stm32f1xx_it.o
- .debug_abbrev  0x0000000000001100      0x1bb Src/sysmem.o
- .debug_abbrev  0x00000000000012bb      0x134 Src/system_stm32f1xx.o
- .debug_abbrev  0x00000000000013ef       0x12 Startup/startup_stm32f103c8tx.o
+ .debug_abbrev  0x0000000000000cf3      0x22b Src/main.o
+ .debug_abbrev  0x0000000000000f1e      0x109 Src/stm32f1xx_hal_msp.o
+ .debug_abbrev  0x0000000000001027       0xc6 Src/stm32f1xx_it.o
+ .debug_abbrev  0x00000000000010ed      0x1bb Src/sysmem.o
+ .debug_abbrev  0x00000000000012a8      0x134 Src/system_stm32f1xx.o
+ .debug_abbrev  0x00000000000013dc       0x12 Startup/startup_stm32f103c8tx.o
 
 .debug_aranges  0x0000000000000000      0x4e0
  .debug_aranges
@@ -2527,7 +2529,7 @@ OUTPUT(flash_interna.elf elf32-littlearm)
  .debug_ranges  0x00000000000003f0       0x18 Src/system_stm32f1xx.o
  .debug_ranges  0x0000000000000408       0x20 Startup/startup_stm32f103c8tx.o
 
-.debug_macro    0x0000000000000000    0x132c2
+.debug_macro    0x0000000000000000    0x132d1
  .debug_macro   0x0000000000000000      0x19f Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_macro   0x000000000000019f      0xa5a Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_macro   0x0000000000000bf9      0x20f Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
@@ -2581,27 +2583,27 @@ OUTPUT(flash_interna.elf elf32-littlearm)
  .debug_macro   0x0000000000012783       0x35 Src/flash.o
  .debug_macro   0x00000000000127b8       0x20 Src/flash.o
  .debug_macro   0x00000000000127d8       0x10 Src/flash.o
- .debug_macro   0x00000000000127e8      0x246 Src/main.o
- .debug_macro   0x0000000000012a2e      0x185 Src/stm32f1xx_hal_msp.o
- .debug_macro   0x0000000000012bb3      0x18f Src/stm32f1xx_it.o
- .debug_macro   0x0000000000012d42      0x1ae Src/sysmem.o
- .debug_macro   0x0000000000012ef0      0x23b Src/sysmem.o
- .debug_macro   0x000000000001312b       0x16 Src/sysmem.o
- .debug_macro   0x0000000000013141      0x181 Src/system_stm32f1xx.o
+ .debug_macro   0x00000000000127e8      0x255 Src/main.o
+ .debug_macro   0x0000000000012a3d      0x185 Src/stm32f1xx_hal_msp.o
+ .debug_macro   0x0000000000012bc2      0x18f Src/stm32f1xx_it.o
+ .debug_macro   0x0000000000012d51      0x1ae Src/sysmem.o
+ .debug_macro   0x0000000000012eff      0x23b Src/sysmem.o
+ .debug_macro   0x000000000001313a       0x16 Src/sysmem.o
+ .debug_macro   0x0000000000013150      0x181 Src/system_stm32f1xx.o
 
-.debug_line     0x0000000000000000     0x4e93
+.debug_line     0x0000000000000000     0x4e9c
  .debug_line    0x0000000000000000      0x79d Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_line    0x000000000000079d      0x876 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .debug_line    0x0000000000001013      0x7ba Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o
  .debug_line    0x00000000000017cd      0x809 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o
  .debug_line    0x0000000000001fd6      0x85f Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_line    0x0000000000002835      0x736 Src/flash.o
- .debug_line    0x0000000000002f6b      0x76a Src/main.o
- .debug_line    0x00000000000036d5      0x5c0 Src/stm32f1xx_hal_msp.o
- .debug_line    0x0000000000003c95      0x663 Src/stm32f1xx_it.o
- .debug_line    0x00000000000042f8      0x52c Src/sysmem.o
- .debug_line    0x0000000000004824      0x5f0 Src/system_stm32f1xx.o
- .debug_line    0x0000000000004e14       0x7f Startup/startup_stm32f103c8tx.o
+ .debug_line    0x0000000000002835      0x734 Src/flash.o
+ .debug_line    0x0000000000002f69      0x775 Src/main.o
+ .debug_line    0x00000000000036de      0x5c0 Src/stm32f1xx_hal_msp.o
+ .debug_line    0x0000000000003c9e      0x663 Src/stm32f1xx_it.o
+ .debug_line    0x0000000000004301      0x52c Src/sysmem.o
+ .debug_line    0x000000000000482d      0x5f0 Src/system_stm32f1xx.o
+ .debug_line    0x0000000000004e1d       0x7f Startup/startup_stm32f103c8tx.o
 
 .debug_str      0x0000000000000000    0x685b1
  .debug_str     0x0000000000000000    0x63003 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
@@ -2617,7 +2619,7 @@ OUTPUT(flash_interna.elf elf32-littlearm)
  .debug_str     0x0000000000063d08     0x2faf Src/flash.o
                                       0x65ce1 (size before relaxing)
  .debug_str     0x0000000000066cb7       0xd9 Src/main.o
-                                      0x65e0e (size before relaxing)
+                                      0x65e28 (size before relaxing)
  .debug_str     0x0000000000066d90       0x3f Src/stm32f1xx_hal_msp.o
                                       0x62cc0 (size before relaxing)
  .debug_str     0x0000000000066dcf       0xb8 Src/stm32f1xx_it.o

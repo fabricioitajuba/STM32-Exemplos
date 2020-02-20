@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020070  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000521c  00000000  00000000  00020099  2**0
+ 12 .debug_info   000051fa  00000000  00000000  00020099  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 00001401  00000000  00000000  000252b5  2**0
+ 13 .debug_abbrev 000013ee  00000000  00000000  00025293  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 000004e0  00000000  00000000  000266b8  2**3
+ 14 .debug_aranges 000004e0  00000000  00000000  00026688  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000428  00000000  00000000  00026b98  2**3
+ 15 .debug_ranges 00000428  00000000  00000000  00026b68  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  000132c2  00000000  00000000  00026fc0  2**0
+ 16 .debug_macro  000132d1  00000000  00000000  00026f90  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00004e93  00000000  00000000  0003a282  2**0
+ 17 .debug_line   00004e9c  00000000  00000000  0003a261  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000685b1  00000000  00000000  0003f115  2**0
+ 18 .debug_str    000685b1  00000000  00000000  0003f0fd  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000a76c6  2**0
+ 19 .comment      0000007b  00000000  00000000  000a76ae  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001488  00000000  00000000  000a7744  2**2
+ 20 .debug_frame  00001488  00000000  00000000  000a772c  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -2870,8 +2870,8 @@ static void RCC_Delay(uint32_t mdelay)
  8001010:	10624dd3 	.word	0x10624dd3
 
 08001014 <save_to_flash>:
- *      Author: fabricio
- */
+*/
+
 #include "flash.h"
 
 void save_to_flash(uint8_t *data)
@@ -2982,36 +2982,36 @@ void save_to_flash(uint8_t *data)
  80010fa:	b29b      	uxth	r3, r3
 	volatile uint16_t pages = (strlen((char*)data)/page_size)
  80010fc:	857b      	strh	r3, [r7, #42]	; 0x2a
-	  /* Unlock the Flash to enable the flash control register access *************/
-	  HAL_FLASH_Unlock();
+	/* Unlock the Flash to enable the flash control register access *************/
+	HAL_FLASH_Unlock();
  80010fe:	f7ff f9e3 	bl	80004c8 <HAL_FLASH_Unlock>
 
-	  /* Allow Access to option bytes sector */
-	  HAL_FLASH_OB_Unlock();
+	/* Allow Access to option bytes sector */
+	HAL_FLASH_OB_Unlock();
  8001102:	f7ff fa17 	bl	8000534 <HAL_FLASH_OB_Unlock>
 
-	  /* Fill EraseInit structure*/
-	  FLASH_EraseInitTypeDef EraseInitStruct;
-	  EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
+	/* Fill EraseInit structure*/
+	FLASH_EraseInitTypeDef EraseInitStruct;
+	EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
  8001106:	2300      	movs	r3, #0
  8001108:	61bb      	str	r3, [r7, #24]
-	  EraseInitStruct.PageAddress = FLASH_STORAGE;
+	EraseInitStruct.PageAddress = FLASH_STORAGE;
  800110a:	4b20      	ldr	r3, [pc, #128]	; (800118c <save_to_flash+0x178>)
  800110c:	623b      	str	r3, [r7, #32]
-	  EraseInitStruct.NbPages = pages;
+	EraseInitStruct.NbPages = pages;
  800110e:	8d7b      	ldrh	r3, [r7, #42]	; 0x2a
  8001110:	b29b      	uxth	r3, r3
  8001112:	627b      	str	r3, [r7, #36]	; 0x24
-	  uint32_t PageError;
+	uint32_t PageError;
 
-	  volatile uint32_t write_cnt=0, index=0;
+	volatile uint32_t write_cnt=0, index=0;
  8001114:	2300      	movs	r3, #0
  8001116:	613b      	str	r3, [r7, #16]
  8001118:	2300      	movs	r3, #0
  800111a:	60fb      	str	r3, [r7, #12]
 
-	  volatile HAL_StatusTypeDef status;
-	  status = HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
+	volatile HAL_StatusTypeDef status;
+	status = HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
  800111c:	f107 0214 	add.w	r2, r7, #20
  8001120:	f107 0318 	add.w	r3, r7, #24
  8001124:	4611      	mov	r1, r2
@@ -3019,16 +3019,16 @@ void save_to_flash(uint8_t *data)
  8001128:	f7ff fae2 	bl	80006f0 <HAL_FLASHEx_Erase>
  800112c:	4603      	mov	r3, r0
  800112e:	72fb      	strb	r3, [r7, #11]
-	  while(index < data_length)
+	while(index < data_length)
  8001130:	e01f      	b.n	8001172 <save_to_flash+0x15e>
-	  {
-		  if (status == HAL_OK)
+	{
+		if (status == HAL_OK)
  8001132:	7afb      	ldrb	r3, [r7, #11]
  8001134:	b2db      	uxtb	r3, r3
  8001136:	2b00      	cmp	r3, #0
  8001138:	d11b      	bne.n	8001172 <save_to_flash+0x15e>
-		  {
-			  status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, FLASH_STORAGE+write_cnt, data_to_FLASH[index]);
+		{
+			status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, FLASH_STORAGE+write_cnt, data_to_FLASH[index]);
  800113a:	693b      	ldr	r3, [r7, #16]
  800113c:	f103 6100 	add.w	r1, r3, #134217728	; 0x8000000
  8001140:	f501 3180 	add.w	r1, r1, #65536	; 0x10000
@@ -3042,27 +3042,27 @@ void save_to_flash(uint8_t *data)
  8001156:	f7ff f947 	bl	80003e8 <HAL_FLASH_Program>
  800115a:	4603      	mov	r3, r0
  800115c:	72fb      	strb	r3, [r7, #11]
-			  if(status == HAL_OK)
+			if(status == HAL_OK)
  800115e:	7afb      	ldrb	r3, [r7, #11]
  8001160:	b2db      	uxtb	r3, r3
  8001162:	2b00      	cmp	r3, #0
  8001164:	d105      	bne.n	8001172 <save_to_flash+0x15e>
-			  {
-				  write_cnt += 4;
+			{
+				write_cnt += 4;
  8001166:	693b      	ldr	r3, [r7, #16]
  8001168:	3304      	adds	r3, #4
  800116a:	613b      	str	r3, [r7, #16]
-				  index++;
+				index++;
  800116c:	68fb      	ldr	r3, [r7, #12]
  800116e:	3301      	adds	r3, #1
  8001170:	60fb      	str	r3, [r7, #12]
-	  while(index < data_length)
+	while(index < data_length)
  8001172:	68fa      	ldr	r2, [r7, #12]
  8001174:	6afb      	ldr	r3, [r7, #44]	; 0x2c
  8001176:	429a      	cmp	r2, r3
  8001178:	d3db      	bcc.n	8001132 <save_to_flash+0x11e>
-			  }
-		  }
+			 }
+		 }
 	  }
 
 	  HAL_FLASH_OB_Lock();

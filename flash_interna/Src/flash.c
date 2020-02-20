@@ -1,9 +1,7 @@
-/*
- * flash.c
- *
- *  Created on: Feb 19, 2020
- *      Author: fabricio
- */
+/*! @file   flash.c
+Biblioteca para gravar e ler a flash
+*/
+
 #include "flash.h"
 
 void save_to_flash(uint8_t *data)
@@ -16,34 +14,34 @@ void save_to_flash(uint8_t *data)
 									+ (int)((strlen((char*)data_to_FLASH) % 4) != 0);
 	volatile uint16_t pages = (strlen((char*)data)/page_size)
 									+ (int)((strlen((char*)data)%page_size) != 0);
-	  /* Unlock the Flash to enable the flash control register access *************/
-	  HAL_FLASH_Unlock();
+	/* Unlock the Flash to enable the flash control register access *************/
+	HAL_FLASH_Unlock();
 
-	  /* Allow Access to option bytes sector */
-	  HAL_FLASH_OB_Unlock();
+	/* Allow Access to option bytes sector */
+	HAL_FLASH_OB_Unlock();
 
-	  /* Fill EraseInit structure*/
-	  FLASH_EraseInitTypeDef EraseInitStruct;
-	  EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
-	  EraseInitStruct.PageAddress = FLASH_STORAGE;
-	  EraseInitStruct.NbPages = pages;
-	  uint32_t PageError;
+	/* Fill EraseInit structure*/
+	FLASH_EraseInitTypeDef EraseInitStruct;
+	EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
+	EraseInitStruct.PageAddress = FLASH_STORAGE;
+	EraseInitStruct.NbPages = pages;
+	uint32_t PageError;
 
-	  volatile uint32_t write_cnt=0, index=0;
+	volatile uint32_t write_cnt=0, index=0;
 
-	  volatile HAL_StatusTypeDef status;
-	  status = HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
-	  while(index < data_length)
-	  {
-		  if (status == HAL_OK)
-		  {
-			  status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, FLASH_STORAGE+write_cnt, data_to_FLASH[index]);
-			  if(status == HAL_OK)
-			  {
-				  write_cnt += 4;
-				  index++;
-			  }
-		  }
+	volatile HAL_StatusTypeDef status;
+	status = HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
+	while(index < data_length)
+	{
+		if (status == HAL_OK)
+		{
+			status = HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, FLASH_STORAGE+write_cnt, data_to_FLASH[index]);
+			if(status == HAL_OK)
+			{
+				write_cnt += 4;
+				index++;
+			 }
+		 }
 	  }
 
 	  HAL_FLASH_OB_Lock();
@@ -67,3 +65,4 @@ void read_flash(uint8_t* data)
 		}
 	}while(read_data != 0xFFFFFFFF);
 }
+
