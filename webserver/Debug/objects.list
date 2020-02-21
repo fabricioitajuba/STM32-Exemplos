@@ -19,6 +19,7 @@
 "Src/enc28j60.o"
 "Src/ip_arp_udp_tcp.o"
 "Src/main.o"
+"Src/memory.o"
 "Src/stm32f1xx_hal_msp.o"
 "Src/stm32f1xx_it.o"
 "Src/syscalls.o"

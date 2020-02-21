@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "memory.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -86,6 +86,10 @@ static uint8_t websrvip[4] = { 0, 0, 0, 0 };
 static uint8_t gwip[4] = { 192, 168, 0, 1 };
 static uint8_t dnsip[4] = { 0, 0, 0, 0 };
 static uint8_t dhcpsvrip[4] = { 0, 0, 0, 0 };
+
+//Reservando área da flah interna
+MemoryMap map;
+static const uint32_t memoryMapSize = sizeof(map) / sizeof(uint32_t);
 
 /* USER CODE END PV */
 
@@ -371,20 +375,36 @@ uint16_t print_webpage(uint8_t *buf)
 	int a=45;
 	char writeValue[30];
 
-	sprintf(writeValue,"O valor da variavel a= %d",a);
-	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	plen = ES_fill_tcp_data(buf, plen, "<br> ");
+	//sprintf(writeValue,"O valor da variavel a= %d",a);
+	//plen = ES_fill_tcp_data(buf, plen, writeValue);
+	//plen = ES_fill_tcp_data(buf, plen, "<br> ");
 
-	//uint32_t HAL_GetREVID (void )
-	//uint32_t HAL_GetDEVID (void )
-	//sprintf(writeValue,"O valor do ID do chip =%d",ID);
 
-	sprintf(writeValue,"O valor do ID do chip = %X %X %X",mac1, mac2, mac3);
-	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	plen = ES_fill_tcp_data(buf, plen, "<br> ");
+	//sprintf(writeValue,"O valor do ID do chip = %X %X %X",mac1, mac2, mac3);
+	//plen = ES_fill_tcp_data(buf, plen, writeValue);
+	//plen = ES_fill_tcp_data(buf, plen, "<br> ");
 
 	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_on'><button>Ligar led</button></a>");
 	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/led_off'><button>Desligar led</button></a>");
+
+	//Manipulando a flash interna
+
+	/*Read map from flash*/
+	MemMap_ReadAllEntriesFromFlash(&map, memoryMapSize);
+
+	sprintf(writeValue,"<br>O valor da variavel data0= %ld",map.data0);
+	plen = ES_fill_tcp_data(buf, plen, writeValue);
+	sprintf(writeValue,"<br>O valor da variavel data1= %ld",map.data1);
+	plen = ES_fill_tcp_data(buf, plen, writeValue);
+	sprintf(writeValue,"<br>O valor da variavel data2= %ld",map.data2);
+	plen = ES_fill_tcp_data(buf, plen, writeValue);
+
+	map.data0++;
+	map.data1++;
+	map.data2++;
+
+	/*Store map to flash*/
+	MemMap_WriteAllEntriesToFlash(&map, memoryMapSize);
 
 	plen = ES_fill_tcp_data(buf, plen, "<br></font></h2>");
 	plen = ES_fill_tcp_data(buf, plen, "</center><hr>");
