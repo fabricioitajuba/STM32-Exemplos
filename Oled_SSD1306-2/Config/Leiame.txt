@@ -1,0 +1,53 @@
+-- Fonte:
+http://elastic-notes.blogspot.com/p/stm32-i2c-oled-ssd.html
+https://github.com/leechwort/SSD1306_I2C
+
+-- Configurações:
+
+- copiar os arquivos dentro da pasta: \u8glib\inc para dentro da pasta \inc do projeto.
+
+- copiar os arquivos dentro da pasta: \u8glib\src para dentro da pasta \src do projeto.
+
+- no arquivo u8g_arm.h, alterar a linha:
+#include "stm32f4xx_hal.h" -> para o controlador usado, ex:
+#include "stm32f1xx_hal.h"
+
+e a linha:
+#define I2C_HANDLER hi2c3 // use your i2c handler -> para a i2c definida, ex:
+#define I2C_HANDLER hi2c1 // use your i2c handler
+
+-- Observações:
+1 - Se estiver utilizando o modelo oled 128x64 (ou outro similar) e aparecer uma linha vertical do lado esquerdo da tela, altere a seguinte linha do arquivo "u8g_dev_ssd1306_128x64":
+
+#define WIDTH 128
+para:
+#define WIDTH 129
+
+
+-- Inclusões no código:
+
+/* USER CODE BEGIN Includes */
+#include "u8g_arm.h"
+
+
+/* USER CODE BEGIN PV */
+/* Private variables ---------------------------------------------------------*/
+static u8g_t u8g;
+
+
+/* USER CODE BEGIN 0 */
+/*
+Function which responds for drawing
+*/
+void draw(void)
+{
+	u8g_SetFont(&u8g,u8g_font_profont10);//set current font
+	u8g_DrawStr(&u8g, 2, 12, "Hello!");//write string - you set coordinates and string
+	u8g_DrawBox(&u8g, 30, 30, 35, 35);//draw some box
+}
+
+
+  /* USER CODE BEGIN 2 */
+  u8g_InitComFn(&u8g, &u8g_dev_ssd1306_128x64_i2c, u8g_com_hw_i2c_fn); //here we init our u8glib driver
+
+
