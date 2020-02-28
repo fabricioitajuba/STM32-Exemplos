@@ -1,0 +1,53 @@
+typedef struct
+{
+  __IO uint32_t ACR;
+  __IO uint32_t KEYR;
+  __IO uint32_t OPTKEYR;
+  __IO uint32_t SR;
+  __IO uint32_t CR;
+  __IO uint32_t AR;
+  __IO uint32_t RESERVED;
+  __IO uint32_t OBR;
+  __IO uint32_t WRPR;
+} FLASH_TypeDef;
+
+
+#define PERIPH_BASE           0x40000000UL /*!< Peripheral base address in the alias region */
+
+#define AHBPERIPH_BASE        (PERIPH_BASE + 0x00020000UL)
+
+#define FLASH_R_BASE          (AHBPERIPH_BASE + 0x00002000UL) /*!< Flash registers base address */
+
+#define FLASH               ((FLASH_TypeDef *)FLASH_R_BASE)
+
+#define FLASH_CR_PG_Pos                     (0U)                               
+#define FLASH_CR_PG_Msk                     (0x1UL << FLASH_CR_PG_Pos)          /*!< 0x00000001 */
+#define FLASH_CR_PG                         FLASH_CR_PG_Msk                    /*!< Programming */
+
+#define FLASH_CR_LOCK_Pos                   (7U)                               
+#define FLASH_CR_LOCK_Msk                   (0x1UL << FLASH_CR_LOCK_Pos)        /*!< 0x00000080 */
+#define FLASH_CR_LOCK                       FLASH_CR_LOCK_Msk                  /*!< Lock */
+
+
+
+FLASH->CR &= ~FLASH_CR_PG;
+FLASH->CR |= FLASH_CR_LOCK;
+
+
+while(FLASH->SR & FLASH_SR_BSY)
+{
+	if(--timeout == 0)
+	{
+		return -1;
+	}
+}
+
+
+
+
+
+0x40000000UL
+0x00020000UL
+0x00002000UL
+------------
+0x40022000UL
