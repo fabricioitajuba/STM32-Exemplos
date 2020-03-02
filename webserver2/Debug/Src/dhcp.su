@@ -1,0 +1,8 @@
+dhcp.c:91:13:addToBuf	16	static
+dhcp.c:95:9:dhcp_state	16	static
+dhcp.c:113:6:dhcp_start	32	static
+dhcp.c:143:6:dhcp_request_ip	16	static
+dhcp.c:151:6:dhcp_send	24	static
+dhcp.c:247:9:check_for_dhcp_answer	24	static
+dhcp.c:265:9:have_dhcpoffer	32	static
+dhcp.c:297:9:have_dhcpack	16	static

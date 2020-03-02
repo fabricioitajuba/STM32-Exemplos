@@ -1,0 +1,9 @@
+main.c:101:5:main	32	static
+main.c:212:6:SystemClock_Config	72	static
+main.c:250:13:MX_SPI1_Init	8	static
+main.c:288:13:MX_GPIO_Init	40	static
+main.c:320:10:http200ok	8	static
+main.c:326:10:print_webpage	72	static
+main.c:353:10:print_webpage2	24	static
+main.c:375:6:ES_PingCallback	4	static
+main.c:385:6:Error_Handler	4	static

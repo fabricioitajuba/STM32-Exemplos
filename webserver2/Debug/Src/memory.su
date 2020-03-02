@@ -1,0 +1,7 @@
+memory.c:11:20:MemMap_Flash_Unlock	4	static
+memory.c:21:20:MemMap_Flash_Lock	4	static
+memory.c:27:15:MemMap_Flash_WriteWord	24	static
+memory.c:70:17:MemMap_Flash_ReadWord	16	static
+memory.c:76:15:MemMap_Flash_ErasePage	24	static
+memory.c:112:6:MemMap_WriteAllEntriesToFlash	40	static
+memory.c:133:6:MemMap_ReadAllEntriesFromFlash	40	static
