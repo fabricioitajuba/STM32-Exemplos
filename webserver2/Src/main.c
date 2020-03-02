@@ -194,6 +194,40 @@ int main(void)
 			dat_p = print_webpage2(buf);
 			goto SENDTCP;
 		}
+		else if (strncmp("/?", (char *) &(buf[dat_p + 4]), 2) == 0)
+		{
+			int i=4;
+			char mat;
+			int cont=0;
+			while(buf[dat_p + i] != ' ')
+			{
+				if(buf[dat_p + i] == '=')
+				{
+					if(cont == 0)
+					{
+						map.data0=buf[dat_p + i + 1];
+						cont++;
+					}
+					else if(cont == 1)
+					{
+						map.data1=buf[dat_p + i + 1];
+						cont++;
+					}
+					else if(cont == 2)
+					{
+						map.data2=buf[dat_p + i + 1];
+					}
+				}
+
+				i++;
+			}
+
+			/*Store map to flash*/
+			MemMap_WriteAllEntriesToFlash(&map, memoryMapSize);
+
+			dat_p = print_webpage2(buf);
+			goto SENDTCP;
+		}
 		else
 		{
 			dat_p = ES_fill_tcp_data(buf, 0, "HTTP/1.0 401 Unauthorized\r\nContent-Type: text/html\r\n\r\n<h1>401 Unauthorized</h1>");
@@ -329,21 +363,21 @@ uint16_t print_webpage(uint8_t *buf)
 	char writeValue[50];
 
 	plen = http200ok();
-	plen = ES_fill_tcp_data(buf, plen, "<html><head><title>STM32F1 ENC28J60 Ethernet Demo</title></head>");
+	plen = ES_fill_tcp_data(buf, plen, "<!DOCTYPE html><head><title>STM32F1 ENC28J60 Ethernet Demo</title></head>");
 
 	plen = ES_fill_tcp_data(buf, plen, "<body><h2>Dados na memoria:</h2>");
 
 	MemMap_ReadAllEntriesFromFlash(&map, memoryMapSize);
-	sprintf(writeValue,"<br>O valor da variavel 1 = %ld",map.data0);
+	sprintf(writeValue,"<br>O valor da variavel 1 = %c",map.data0);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	sprintf(writeValue,"<br>O valor da variavel 2 = %ld",map.data1);
+	sprintf(writeValue,"<br>O valor da variavel 2 = %c",map.data1);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	sprintf(writeValue,"<br>O valor da variavel 3 = %ld",map.data2);
+	sprintf(writeValue,"<br>O valor da variavel 3 = %c",map.data2);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
 
 	plen = ES_fill_tcp_data(buf, plen, "<br> ");
 
-	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test'>Alterar dados</a>");
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/test'><button>Alterar dados</button></a>");
 	plen = ES_fill_tcp_data(buf, plen, "</body></html>");
 
 	return (plen);
@@ -355,17 +389,17 @@ uint16_t print_webpage2(uint8_t *buf)
 	uint16_t plen;
 
 	plen = http200ok();
-	plen = ES_fill_tcp_data(buf, plen, "<html><head><title>Test page</title></head><body>");
+	plen = ES_fill_tcp_data(buf, plen, "<!DOCTYPE html><head><title>Test page</title></head><body>");
 	plen = ES_fill_tcp_data(buf, plen, "<h1>Alterar dados: </h1>");
 
 	plen = ES_fill_tcp_data(buf, plen, "<form method='GET' action='/ '>");
-
 	plen = ES_fill_tcp_data(buf, plen, "<br>Variavel 1: <input type='text' name='var1'/><br/>");
 	plen = ES_fill_tcp_data(buf, plen, "<br>Variavel 2: <input type='text' name='var2'/><br/>");
 	plen = ES_fill_tcp_data(buf, plen, "<br>Variavel 3: <input type='text' name='var3'/><br/>");
 	plen = ES_fill_tcp_data(buf, plen, "<br><input type='submit' value='Insere dados'/>");
-
 	plen = ES_fill_tcp_data(buf, plen, "</form>");
+
+	plen = ES_fill_tcp_data(buf, plen, "<br> <a href='/'><button>Voltar</button></a>");
 
 	plen = ES_fill_tcp_data(buf, plen, "</body></html>");
 
