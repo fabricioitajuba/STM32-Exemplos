@@ -230,11 +230,13 @@ int main(void)
 					if(cont == 0)
 					{
 						map.data0=atol(mat);
+						memset(mat, 0, sizeof(mat));
 						cont++;
 					}
 					else if(cont == 1)
 					{
 						map.data1=atol(mat);
+						memset(mat, 0, sizeof(mat));
 						cont++;
 					}
 					else if(cont == 2)
@@ -424,7 +426,7 @@ uint16_t print_webpage2(uint8_t *buf)
 	plen = ES_fill_tcp_data(buf, plen, "<!DOCTYPE html><head><title>Test page</title></head><body>");
 	plen = ES_fill_tcp_data(buf, plen, "<h1>Alterar dados: </h1>");
 
-	plen = ES_fill_tcp_data(buf, plen, "<form method='GET' action='/ '>");
+	plen = ES_fill_tcp_data(buf, plen, "<form method='GET' autocomplete='off' action='/ '>");
 	plen = ES_fill_tcp_data(buf, plen, "<br>Variavel 1: <input type='text' name='var1'/><br/>");
 	plen = ES_fill_tcp_data(buf, plen, "<br>Variavel 2: <input type='text' name='var2'/><br/>");
 	plen = ES_fill_tcp_data(buf, plen, "<br>Variavel 3: <input type='text' name='var3'/><br/>");
