@@ -196,29 +196,54 @@ int main(void)
 		}
 		else if (strncmp("/?", (char *) &(buf[dat_p + 4]), 2) == 0)
 		{
-			int i=4;
-			char mat;
-			int cont=0;
-			while(buf[dat_p + i] != ' ')
+			//Salva valores na flash
+			char mat[3];
+			int cont=0, i=4, offset=0, n1=0, n2=1;
+
+			while(n1 != n2)
 			{
 				if(buf[dat_p + i] == '=')
 				{
+					i++;
+
+					if(cont < 2)
+					{
+						while(buf[dat_p + i] != '&')
+						{
+							mat[offset] = buf[dat_p + i];
+							offset++;
+							i++;
+						}
+					}
+					else
+					{
+						while(buf[dat_p + i] != ' ')
+						{
+							mat[offset] = buf[dat_p + i];
+							offset++;
+							i++;
+						}
+					}
+
+					offset = 0;
+
 					if(cont == 0)
 					{
-						map.data0=buf[dat_p + i + 1];
+						map.data0=atoi(mat);
 						cont++;
 					}
 					else if(cont == 1)
 					{
-						map.data1=buf[dat_p + i + 1];
+						map.data1=atoi(mat);
 						cont++;
 					}
 					else if(cont == 2)
 					{
-						map.data2=buf[dat_p + i + 1];
+						map.data2=atoi(mat);
+						cont++;
+						n1++;
 					}
 				}
-
 				i++;
 			}
 
@@ -361,6 +386,7 @@ uint16_t print_webpage(uint8_t *buf)
 {
 	uint16_t plen;
 	char writeValue[50];
+	int var1, var2, var3;
 
 	plen = http200ok();
 	plen = ES_fill_tcp_data(buf, plen, "<!DOCTYPE html><head><title>STM32F1 ENC28J60 Ethernet Demo</title></head>");
@@ -368,11 +394,17 @@ uint16_t print_webpage(uint8_t *buf)
 	plen = ES_fill_tcp_data(buf, plen, "<body><h2>Dados na memoria:</h2>");
 
 	MemMap_ReadAllEntriesFromFlash(&map, memoryMapSize);
-	sprintf(writeValue,"<br>O valor da variavel 1 = %c",map.data0);
+
+	var1 = (int) map.data0;
+	sprintf(writeValue,"<br>O valor da variavel 1 = %d", var1);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	sprintf(writeValue,"<br>O valor da variavel 2 = %c",map.data1);
+
+	var2 = (int) map.data1;
+	sprintf(writeValue,"<br>O valor da variavel 2 = %d",var2);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
-	sprintf(writeValue,"<br>O valor da variavel 3 = %c",map.data2);
+
+	var3 = (int) map.data2;
+	sprintf(writeValue,"<br>O valor da variavel 3 = %d",var3);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
 
 	plen = ES_fill_tcp_data(buf, plen, "<br> ");
