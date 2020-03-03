@@ -197,7 +197,7 @@ int main(void)
 		else if (strncmp("/?", (char *) &(buf[dat_p + 4]), 2) == 0)
 		{
 			//Salva valores na flash
-			char mat[3];
+			char mat[3]={0, 0, 0};
 			int cont=0, i=4, offset=0, n1=0, n2=1;
 
 			while(n1 != n2)
@@ -229,17 +229,17 @@ int main(void)
 
 					if(cont == 0)
 					{
-						map.data0=atoi(mat);
+						map.data0=atol(mat);
 						cont++;
 					}
 					else if(cont == 1)
 					{
-						map.data1=atoi(mat);
+						map.data1=atol(mat);
 						cont++;
 					}
 					else if(cont == 2)
 					{
-						map.data2=atoi(mat);
+						map.data2=atol(mat);
 						cont++;
 						n1++;
 					}
@@ -396,7 +396,7 @@ uint16_t print_webpage(uint8_t *buf)
 	MemMap_ReadAllEntriesFromFlash(&map, memoryMapSize);
 
 	var1 = (int) map.data0;
-	sprintf(writeValue,"<br>O valor da variavel 1 = %d", var1);
+	sprintf(writeValue,"<br>O valor da variavel 1 = %d",var1);
 	plen = ES_fill_tcp_data(buf, plen, writeValue);
 
 	var2 = (int) map.data1;
