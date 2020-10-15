@@ -6,6 +6,7 @@ Data: 03/10/2019
 
 Fonte:
 http://www.emcu.eu/stm32-basic-timer/
+https://www.waveshare.com/wiki/STM32CubeMX_Tutorial_Series:_Basic_Timer
 
 FORMULA:
 
