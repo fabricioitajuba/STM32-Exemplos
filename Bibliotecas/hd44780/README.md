@@ -5,7 +5,7 @@
 Configura os pinos
 
 ## main.c
-```
+
 /* USER CODE BEGIN Includes */
 #include "hd44780.h"
 /* USER CODE END Includes */
@@ -32,5 +32,4 @@ lcdGoto(LCD_2nd_LINE, 6);
 lcdItos(valor);
 
 /* USER CODE END 2 */
-```
 

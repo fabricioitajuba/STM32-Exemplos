@@ -1,7 +1,7 @@
 ### Exemplo de uso da biblioteca
 
 ## main.c
-```
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "flash.h"
@@ -45,5 +45,3 @@
   sprintf(writeValue,"O valor da variavel number= %d",number_read);
 
   /* USER CODE END 2 */
-
-```
