@@ -48,7 +48,7 @@ Inside FATFS/Target Folder
 user_diskio.c
 
 Additional code on top of STM32CubeIDE generated code (main.c)
-
+```
 /* USER CODE BEGIN PD */
 FATFS fs;
 FIL fil;
@@ -62,11 +62,11 @@ FIL fil;
   f_puts("Hello from Nizar\n", &fil);
   f_close(&fil);
   /* USER CODE END 2 */
-
+```
 # To check SD card capacity and free space
 
 Additional code on top of STM32CubeIDE generated code (main.c)
-
+```
 /* USER CODE BEGIN PD */
 FATFS *pfs;
 DWORD fre_clust;
@@ -78,11 +78,11 @@ uint32_t totalSpace, freeSpace;
   totalSpace = (uint32_t)((pfs->n_fatent - 2) * pfs->csize * 0.5);
   freeSpace = (uint32_t)(fre_clust * pfs->csize * 0.5);
   /* USER CODE END 2 */
-
+```
 # To read from the SD card
 
 Additional code on top of STM32CubeIDE generated code (main.c)
-
+```
 /* USER CODE BEGIN Includes */
 #include <string.h>
 /* USER CODE END Includes */
@@ -99,4 +99,6 @@ char buffer[100];
     // memset(buffer,0,sizeof(buffer));
   }
   f_close(&fil);
+
   /* USER CODE END 2 */
+```
