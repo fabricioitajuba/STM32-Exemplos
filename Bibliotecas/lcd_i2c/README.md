@@ -1,5 +1,7 @@
+```
 https://www.youtube.com/watch?v=EYrHRSeAUUc
 https://www.micropeta.com/video61
+```
 
 LCD 1602 I2C Display with Nucleo STM32F446RE using STM32CubeIDE
 
@@ -87,5 +89,6 @@ Additional code on top of STM32CubeIDE generated code
     HAL_Delay (1000);
   }
   /* USER CODE END 2 */
+
 
 ```
