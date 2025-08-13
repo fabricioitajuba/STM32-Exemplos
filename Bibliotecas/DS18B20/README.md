@@ -1,5 +1,6 @@
 ### Exemplo de uso da biblioteca
 
+'''
 ## main.c
 
 #include "ds18b20.h"
@@ -15,3 +16,4 @@ int temp;
 ds18b20_init(GPIOB, GPIO_Pin_12, TIM2);
 
 temperature = ds18b20_get_temperature_simple();
+'''
