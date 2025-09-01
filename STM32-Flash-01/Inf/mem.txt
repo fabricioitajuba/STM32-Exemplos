@@ -1,0 +1,15 @@
+Flash
+
+STM32F103C6 - 32k -> 0x0800.0000 - 0x0800.7FFF = 32 páginas de 1k
+
+Página  0 -> 0x0800.0000 - 0x0800.03FF
+             ...
+Página 31 -> 0x0800.7C00 - 0x0800.7FFF 
+
+
+
+STM32F103C6 - 64k -> 0x0800.0000 - 0x0800.FFFF = 64 páginas de 1k
+
+Página  0 -> 0x0800.0000 - 0x0800.03FF
+             ...
+Página 63 -> 0x0800.7C00 - 0x0800.FFFF 
