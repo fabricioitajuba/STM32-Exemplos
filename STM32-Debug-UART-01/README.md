@@ -61,8 +61,6 @@ $ lsusb
 ```
 
 ### - Para saber em qual porta foi atribuida para o FTDI:
-
-## Utilizando o terminal do Linux para enviar e receber dados pela serial (utilizando FTDI)
 ```
 $ sudo dmesg | grep -i 'attached to'
 ```
