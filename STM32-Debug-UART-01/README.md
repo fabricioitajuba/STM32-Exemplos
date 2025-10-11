@@ -52,3 +52,49 @@ USER_LOG("Failed to connect to wifi... Check Debug logs");
 Error_Handler();}
 /* USER CODE END 2 */
 ```
+
+## Utilizando o terminal do Linux para enviar e receber dados pela serial (utilizando FTDI)
+
+### - Verificar os dispositivos conectados:
+```
+$ lsusb
+```
+
+### - Para saber em qual porta foi atribuida para o FTDI:
+
+## Utilizando o terminal do Linux para enviar e receber dados pela serial (utilizando FTDI)
+```
+$ sudo dmesg | grep -i 'attached to'
+```
+No Linux, as portas USB e COM são tratadas como arquivos especiais localizados no diretório /dev.  
+As portas COM geralmente começam com ttyS (para portas COM padrão) ou ttyUSB (para adaptadores USB para serial).  
+
+### Para listar as portas COM:
+```
+$ ls /dev/ttyS*
+```
+
+### Para listar as portas USB:
+```
+$ ls /dev/ttyUSB*
+```
+
+### - Para habilitar o uso do dispotivo (ex: ttyUSB0:
+```
+$ sudo chmod 777 /dev/ttyUSB0
+```
+
+### - Configurando a taxa de transmissão da porta serial:
+```
+$ stty -F /dev/ttyUSB0 speed 115200
+```
+
+### - Enviando dados pela serial:
+```
+$ echo "helloworld" >/dev/ttyUSB0
+```
+
+### - Recebendo dandos pela serial:
+```
+$ cat /dev/ttyUSB0
+```
