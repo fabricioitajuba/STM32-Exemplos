@@ -48,7 +48,8 @@ if (ESP_Init() != ESP8266_OK){
 }
 if (ESP_ConnectWiFi("Aaaa", "bbb", ip_buf, sizeof(ip_buf)) != ESP8266_OK){
    USER_LOG("Failed to connect to wifi... Check Debug logs");
-   Error_Handler();}
+   Error_Handler();
+}
 /* USER CODE END 2 */
 ```
 
