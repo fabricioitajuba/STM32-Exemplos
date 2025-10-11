@@ -1,1 +1,1 @@
-Utilizando a serial para debugar
+#Utilizando a serial-UART para debugar
