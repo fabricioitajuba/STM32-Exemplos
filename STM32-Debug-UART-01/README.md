@@ -77,7 +77,7 @@ $ ls /dev/ttyS*
 $ ls /dev/ttyUSB*
 ```
 
-### - Para habilitar o uso do dispotivo (ex: ttyUSB0:
+### - Para habilitar o uso do dispotivo (ex: ttyUSB0):
 ```
 $ sudo chmod 777 /dev/ttyUSB0
 ```
