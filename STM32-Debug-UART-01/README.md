@@ -1,7 +1,7 @@
 # Utilizando a serial-UART para debugar
 
 ## STM32
-(https://github.com/fabricioitajuba/STM32-Exemplos/blob/master/STM32-Debug-UART-01/Config/Configura%C3%A7%C3%A3o.png)
+![STM32](https://github.com/fabricioitajuba/STM32-Exemplos/blob/master/STM32-Debug-UART-01/Config/Configura%C3%A7%C3%A3o.png)
 
 ## main.h
 ```
