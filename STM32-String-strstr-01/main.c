@@ -108,11 +108,17 @@ int main(void)
 //  char Link_ID = texto[5] - 48;
 //  sprintf(dadotosend, "Link_ID = %d\r\n", Link_ID);
 
-  char *found_ptr;
-  char *nome = "+IPD,";
-  found_ptr = strstr(texto, nome);
-  sprintf(dadotosend, "End = %d, Dado = %d\r\n", found_ptr, *found_ptr); //End = 134223668, Dado = 43
+//  char *found_ptr;
+//  char *nome = "+IPD,";
+//  found_ptr = strstr(texto, nome);
+//  sprintf(dadotosend, "End = %d, Dado = %d\r\n", found_ptr, *found_ptr); //End = 134223668, Dado = 43
   //sprintf(dadotosend, "End = %d, Dado = %d\r\n", found_ptr+5, *found_ptr+5); //End = 134223673, Dado = 48
+
+	//char *resp = "Isso é um teste!\r\n"; //18 bytes + 1 byte do zero no final
+  char *resp = "Linha 1\n\
+	Linha 2\n"; //16 bytes + 1 byte do zero no final
+
+  sprintf(dadotosend, "Número de caracteres= %d\r\n", strlen(resp));//17 bytes
 
   //sprintf(dadotosend, "Link_ID=%d\r\n", Link_ID);
   //snprintf(dadotosend, sizeof(dadotosend), "Link_ID=%d\r\n", Link_ID);
