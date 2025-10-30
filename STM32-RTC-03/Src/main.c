@@ -99,7 +99,7 @@ int main(void)
   RTC_DateTypeDef sDate;
 
   //char *msg = "+CIPSNTPTIME:Wed Oct 29 10:23:00 2025\r\n";
-  char *msg = "+CIPSNTPTIME:Thu Oct 30 15:56:00 2025\r\n";
+  char *msg = "+CIPSNTPTIME:Sun Oct 30 15:56:00 2025\r\n";
 
   atualiza(msg, sTime, sDate);
 
@@ -302,10 +302,7 @@ void atualiza(char *msg, RTC_TimeTypeDef _sTime, RTC_DateTypeDef _sDate){
 	dado[2] = msg[15];
 	dado[3] = 0;
 
-	if(!strcmp(dado, "Sun")){
-		_sDate.WeekDay = 0;
-	}
-	else if(!strcmp(dado, "Mon")){
+	if(!strcmp(dado, "Mon")){
 		_sDate.WeekDay = 1;
 	}
 	else if(!strcmp(dado, "Tue")){
@@ -323,8 +320,10 @@ void atualiza(char *msg, RTC_TimeTypeDef _sTime, RTC_DateTypeDef _sDate){
 	else if(!strcmp(dado, "Sat")){
 		_sDate.WeekDay = 6;
 	}
-
-	HAL_UART_Transmit(&huart1, (uint8_t*)dado, strlen(dado), HAL_MAX_DELAY);
+	else if(!strcmp(dado, "Sun")){
+		_sDate.WeekDay = 7;
+	}
+	//HAL_UART_Transmit(&huart1, (uint8_t*)dado, strlen(dado), HAL_MAX_DELAY);
 
 	//Meês
 	dado[0] = msg[17];
