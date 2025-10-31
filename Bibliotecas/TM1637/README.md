@@ -1,6 +1,7 @@
 ## Exemplo de uso da biblioteca TM1637
 
-![Logo da Minha Empresa](tm1637.jpg)
+![Fig01](tm16372-1.png)
+![Fig02](tm16372-2.png)
 
 ## main.h
 ```
