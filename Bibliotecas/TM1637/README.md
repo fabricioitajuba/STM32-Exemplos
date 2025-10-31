@@ -3,6 +3,9 @@
 ![Fig01](tm16372-1.png)
 ![Fig02](tm16372-2.png)
 
+> Note que os dois pontos ":" no meio fazem parte do endereço 0xC1. 
+> Esses dois pontos são controlados pelo bit mais significativo dos dados enviados para o endereço 0xC1.
+
 ## main.h
 ```
 /* Private defines -----------------------------------------------------------*/
@@ -28,5 +31,6 @@ HAL_Delay(1000);
 uint8_t data[4] = {0b00000110, 0b01011011, 0b01001111, 0b01100110};
 
 TM1637_WriteData(0xC0, data, 4);
+
 
 ```
